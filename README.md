@@ -1,2 +1,5 @@
-# iFlyOTA_Scripts
-Some scripts used to send dirty requests to get OTA packages from KDXF.
+**获取更新**
+
+java21以上打开
+
+jar文件在 /out 目录中
