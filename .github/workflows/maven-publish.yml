@@ -4,6 +4,9 @@
 name: Maven Package
 
 on:
+  push:
+    branches:    
+      - main
   release:
     types: [created]
 
@@ -14,7 +17,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
