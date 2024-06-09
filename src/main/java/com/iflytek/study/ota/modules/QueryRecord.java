@@ -3,6 +3,7 @@ package com.iflytek.study.ota.modules;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.iflytek.study.ota.DirtyApiClient;
+import com.iflytek.study.ota.Logger;
 import com.iflytek.study.ota.core.AiStudyDevice;
 import com.iflytek.study.ota.utils.AESUtils;
 import com.iflytek.study.ota.utils.Base64Utils;
@@ -297,7 +298,7 @@ public class QueryRecord {
         this.base.setBizid(aiStudyDevice.getBizId());
         this.base.setModelid(aiStudyDevice.getModelId());
         this.base.setProductid(aiStudyDevice.getProductId());
-        this.base.setRomver(romVer);
+        this.base.setRomver("iFLY_V"+romVer.substring(0,1)+"."+romVer.substring(1,3)+"."+romVer.substring(3,4));
     }
 
     public Response query(Gson gson, DirtyApiClient dirtyApiClient) {
@@ -312,7 +313,7 @@ public class QueryRecord {
             return null;
         }
         String bodyContent = gson.toJson(this);
-        System.out.println(bodyContent);
+        Logger.debug("请求体：", bodyContent);
         byte[] compressedBytes = null;
         try {
             compressedBytes = GzipUtils.compress(bodyContent.getBytes(StandardCharsets.UTF_8));
@@ -321,7 +322,7 @@ public class QueryRecord {
         }
         byte[] encryptedBytes = AESUtils.encrypt(compressedBytes);
         String finalString = Base64Utils.encode(encryptedBytes);
-        System.out.println(finalString);
+        Logger.debug("实际请求体：", finalString);
 
         RequestBody body = RequestBody.create(mediaType, finalString); // 或者根据需要构建请求体
         Request request = new Request.Builder()

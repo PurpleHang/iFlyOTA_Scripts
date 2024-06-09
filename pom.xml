@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.7.5</version>
+        </dependency>
+        <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>5.0.0-alpha.3</version>
@@ -29,19 +34,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>com.iflytek.study.ota.Main</mainClass> <!-- 此处为主入口-->
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
             <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <configuration>

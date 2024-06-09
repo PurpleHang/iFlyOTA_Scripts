@@ -82,12 +82,11 @@ public enum AiStudyDevice {
         return this.mDesc;
     }
 
-    public static AiStudyDevice getDeviceByModel(String str) {
-        for (AiStudyDevice aiStudyDevice : values()) {
-            if (str.equals(aiStudyDevice.getModel())) {
-                return aiStudyDevice;
-            }
+    public static AiStudyDevice getDeviceById(int id) {
+        if(values().length >= id) {
+            return values()[id];
+        } else {
+            return DEFAULT_DEVICE;
         }
-        return DEFAULT_DEVICE;
     }
 }
