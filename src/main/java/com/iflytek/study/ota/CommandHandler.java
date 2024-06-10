@@ -41,6 +41,7 @@ public class CommandHandler {
                     Logger.info("upgrade - 请求更新。（仍在开发中）");
                     Logger.info("getotapackage - 获取更新包。（仍在开发中）");
                     Logger.info("time - 获取网络时间戳。");
+                    Logger.info("md5 <数据> - 获取md5。");
                 }
                 case "list" -> {
                     int mIndex = 0;
@@ -122,6 +123,9 @@ public class CommandHandler {
                 }
                 case "exit" -> {
                     System.exit(0);
+                }
+                case "md5" -> {
+                    System.out.println(MD5Utils.md5Encode(args[1]));
                 }
                 default -> {
                     Logger.error("未知命令！");
